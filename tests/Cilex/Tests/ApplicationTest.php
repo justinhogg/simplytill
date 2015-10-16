@@ -12,7 +12,7 @@
 namespace Cilex\Tests;
 
 use Cilex\Application;
-use Cilex\Command\AccountOpenCommand;
+use Cilex\Command\TillCommand;
 
 /**
  * Application test cases.
@@ -63,13 +63,13 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
      */
     public function testReceiptCommand()
     {
-        $this->assertFalse($this->app['console']->has('checkout:receipt'));
+        $this->assertFalse($this->app['console']->has('till:transaction'));
 
-        $this->app->command(new ReceiptCommand());
+        $this->app->command(new TillCommand());
 
-        $this->assertTrue($this->app['console']->has('checkout:receipt'));
+        $this->assertTrue($this->app['console']->has('till:transaction'));
 
-        $this->assertSame($this->app, $this->app['console']->get('checkout:receipt')->getContainer());
+        $this->assertSame($this->app, $this->app['console']->get('till:transaction')->getContainer());
     }
 
 }

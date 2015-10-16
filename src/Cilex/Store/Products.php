@@ -10,9 +10,11 @@ namespace Cilex\Store;
 class Products 
 {
     private $properties = array();
+    
+    public function __construct() {}
 
     /**
-     * getProperties - retuens all propertes for this object
+     * getProperties - returns all propertes for this object
      *
      * @return array
      */
@@ -24,22 +26,23 @@ class Products
     /**
      * addProperty - adds a property to this object
      *
-     * @param sring $id
-     * @param double $value
+     * @param mixed $id
+     * @param mixed $value
      */
     public function addProperty($id, $value)
     {
         $this->properties[$id] = $value;
+        
     }
 
     /**
      * getProperty - gets an individual property
      *
-     * @param string $id
-     * @return double
+     * @param mixed $id
+     * @return mixed|null
      */
     public function getProperty($id)
     {
-        return $this->properties[$id];
+        return (isset($this->properties[$id])) ? $this->properties[$id] : null;
     }
 }

@@ -15,11 +15,11 @@ Install dependencies, run this command from the root directory:
 
 *till*
 
-__till:receipt__ - Produce a till receipt to calculate and display all products with a subtotal and a grand total.
+__till:transaction__ - Produce a till receipt to calculate and display all products with a subtotal and a grand total.
 
 To run this command from the root directory: 
 
-```php store.php till:receipt```
+```php store.php till:transaction```
 
 ### Options
 

@@ -29,7 +29,7 @@ class TillCommand extends Command
         $this->products = json_decode(file_get_contents('products.json'), true);
         
         $this
-            ->setName('till:receipt')
+            ->setName('till:transaction')
             ->setDescription('Produce a receipt for checkout out products.')
             ->addArgument(self::ARGUMENT_LOCALE, InputArgument::REQUIRED, 'Please enter the locale of this transaction!')
             ->addArgument(self::ARGUMENT_DISCOUNT, InputArgument::OPTIONAL, 'Please enter any discounts!')
@@ -77,7 +77,7 @@ class TillCommand extends Command
         
         //if a deposit has been made
         if ($discount && $discount > 0) {
-            $transaction->addDiscount((double) $discount);
+            $transaction->addDiscount((int) $discount, (double) $transaction->getSubTotal());
         }
         
         //output
@@ -95,12 +95,12 @@ class TillCommand extends Command
     {
         if ($this->getHelper('dialog')->askConfirmation(
             $output,
-            '<question>Would you like to enable a discount for this account?</question>',
+            '<question>Would you like to enable a discount for this transaction?</question>',
             false
         )) {
             $amount = $this->getHelper('dialog')->ask(
                 $output,
-                'Enter the discount you would like to apply: '
+                'Enter the discount percentage you would like to apply: '
             );
             
             $input->setArgument(self::ARGUMENT_DISCOUNT, $amount);
