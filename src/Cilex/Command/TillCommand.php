@@ -145,15 +145,15 @@ class TillCommand extends Command
     protected function getLocaleType(OutputInterface $output)
     {
         //set up the bank account
-        $defaultType = 'en_GB';
+        $defaultType = 'en_GB.utf8';
         $question = array(
-            "<comment>en_GB</comment>: British Pound\n",
-            "<comment>en_US</comment>: US Dollar\n",
+            "<comment>en_GB.utf8</comment>: British Pound\n",
+            "<comment>en_US.utf8</comment>: US Dollar\n",
             "<question>Please choose a currency type:</question> [<comment>$defaultType</comment>] ",
         );
 
         $localeType = $this->getHelper('dialog')->askAndValidate($output, $question, function($typeInput) {
-            if (!in_array($typeInput, array('en_GB','en_US'))) {
+            if (!in_array($typeInput, array('en_GB.utf8','en_US.utf8'))) {
                 throw new \InvalidArgumentException('Invalid type');
             }
             return $typeInput;
