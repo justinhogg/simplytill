@@ -1,4 +1,4 @@
-# receipts
+# SimplyTill
 A simple till CLI program.
 
 ### Installation
